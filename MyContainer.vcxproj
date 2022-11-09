@@ -133,7 +133,12 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DebugMarco.h" />
     <ClInclude Include="Node.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="question-for-jason.md" />
+    <None Include="todo.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

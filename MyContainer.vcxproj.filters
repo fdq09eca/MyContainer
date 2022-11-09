@@ -32,5 +32,16 @@
     <ClInclude Include="Node.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="DebugMarco.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="question-for-jason.md">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="todo.md">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

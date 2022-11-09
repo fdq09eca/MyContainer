@@ -9,6 +9,7 @@ class Node
 {
 public:
 	int val = 0;
+	Node* prev = nullptr;
 	Node* next = nullptr;
 	
 	Node() = default;
