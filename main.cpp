@@ -3,37 +3,38 @@
 #include "DebugMarco.h"
 
 
-void test_begin() {
-	List mylist;
-	const Node* h = mylist.begin();
-	TEST(h == nullptr);
-	mylist.push_back(1);
-	const Node* q = mylist.begin();
-	TEST(q->val == 1);
-	TEST(q->next == nullptr);
-}
-
-void test_end() {
-	List mylist;
-	const Node* e = mylist.end();
-	TEST(e == nullptr);
-	mylist.push_back(1);
-	const Node* p = mylist.end();
-	TEST(p->val == 1);
-}
 
 void test_push_back() {
-	List mylist;
-	mylist.push_back(1);
-	TEST(mylist.front() == 1);
-	TEST(mylist.back() == 1);
+	List mylist;	
+	const int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	const int length = 10;
+	for (size_t j = 0; j < length; j++)
+	{
+		mylist.push_back(j + 1);
+	}
 
-	mylist.push_back(2);
-	TEST(mylist.front() == 1);
-	TEST(mylist.back() == 2);
-	mylist.push_back(3);
-	TEST(mylist.front() == 1);
-	TEST(mylist.back() == 3);
+	const Node* begin = mylist.begin();
+	const Node* end = mylist.end();
+	
+	int i = 0;	
+	while (begin) {
+		if (i) TEST(begin->prev->val == arr[i - 1]);
+		TEST(begin->val == arr[i]);
+		if (i && i < length - 1) TEST(begin->next->val == arr[i + 1]);
+		begin = begin->next;
+		i++;
+		if (i == length - 1) TEST(begin == mylist.end());
+	}
+
+	i = length - 1;
+	while (end) {	
+		if (i) TEST(end->prev->val == arr[i - 1]);
+		TEST(end->val == arr[i]);
+		if (i && i < length - 1) TEST(end->next->val == arr[i + 1]);
+		end = end->prev;
+		i--;
+		if (i == 0)	TEST(end == mylist.begin());
+	}
 }
 
 
@@ -60,10 +61,6 @@ void test_ctor() {
 }
 
 int main() {
-	test_empty();
-	test_begin();
-	test_front();
-	test_back();
 	test_push_back();
 	return 0;
 }
