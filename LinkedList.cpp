@@ -73,3 +73,15 @@ bool List::empty()
 {
 	return m_front == nullptr && m_back == nullptr;
 }
+
+int List::size()
+{
+	if (!m_front) return 0;
+	int size = 0;
+	Node* p = m_front;
+	while (p) {
+		size++;
+		p = p->next;
+		return size;
+	}
+}
