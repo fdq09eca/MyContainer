@@ -232,6 +232,7 @@ int main() {
 	//test_empty(); // PASS
 	//test_pop_front(); // PASS.. but memory leak here. poped node is not deleted
 	//test_pop_back(); // PASS.. but memory leak here. poped node is not deleted
-	test_pop();
+	// test_pop(); //PASS
+	//test_erase(); //PASS ?
 	return 0;
 }
