@@ -45,7 +45,7 @@ public:
 	void emplace_back();						// constructs an element inplace at the end
 
 	void clear();			// clears the contents
-	const Node* erase(Node* pos);			// erases Node (pos) return pos->next;
+	const Node* erase(const Node * pos);			// erases Node (pos) return pos->next;
 	void resize();			//	changes the number of elements stored [?]
 	void swap(List&);	// swaps the contents
 

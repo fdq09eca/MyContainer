@@ -173,7 +173,7 @@ void test_erase() {
 	List mylist;
 	mylist.push_back(20);
 	const Node* b = mylist.begin();
-	mylist.erase(const_cast<Node*>(b));
+	mylist.erase(b);
 	TEST(mylist.size() == 0);
 }
 

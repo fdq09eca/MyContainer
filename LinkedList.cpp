@@ -198,11 +198,11 @@ int List::size()
 	return size;
 }
 
-const Node* List::erase(Node* pos)
+const Node* List::erase(const Node * pos)
 {
 	const Node* p = pop(pos);	
 	if (!p) return nullptr;
 	const Node* next = p->next;
-	const_cast<Node*>(p)->reset()->~Node();
+	const_cast<Node*>(p)->reset()->~Node(); // for real?
 	return next;
 }
