@@ -45,7 +45,6 @@ const Node* List::insert_after(Node* pos, const int& value)
 	return n;
 }
 
-
 /// <summary>
 /// Pop a Node from the list, 
 /// Node that Node is not deleted. 
@@ -197,4 +196,13 @@ int List::size()
 		p = p->next;
 	}
 	return size;
+}
+
+const Node* List::erase(Node* pos)
+{
+	const Node* p = pop(pos);	
+	if (!p) return nullptr;
+	const Node* next = p->next;
+	const_cast<Node*>(p)->reset()->~Node();
+	return next;
 }

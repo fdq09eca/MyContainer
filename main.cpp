@@ -39,7 +39,6 @@ void test_back() { /*TODO*/ };
 void test_begin() { /*TODO*/ };
 void test_end() { /*TODO*/ };
 
-
 void test_push_front() {
 	List mylist;
 	const int length = 10;
@@ -54,7 +53,6 @@ void test_push_front() {
 	test_from_begin(mylist, &(*arr), length);
 	test_from_end(mylist, &(*arr), length);
 }
-
 void test_push_back() {
 	List mylist;
 	const int length = 10;
@@ -153,6 +151,30 @@ void test_pop_back() {
 	TEST(mylist.end() == nullptr);
 	TEST(mylist.empty());
 
+}
+
+void test_pop() {
+	List mylist;
+	for (int i = 0; i < 10; i++)
+	{
+		mylist.push_back(i);
+	}
+
+	mylist.print();
+
+	//test_pop_head:
+	const Node* h = mylist.begin();
+	mylist.pop(h);
+
+
+}
+
+void test_erase() { 
+	List mylist;
+	mylist.push_back(20);
+	const Node* b = mylist.begin();
+	mylist.erase(const_cast<Node*>(b));
+	TEST(mylist.size() == 0);
 }
 
 void test_size() {

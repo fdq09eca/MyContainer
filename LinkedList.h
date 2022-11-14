@@ -32,27 +32,21 @@ public:
 	// Capacity
 	bool empty();		//	checks whether the container is empty
 	int size();		    //	returns the number of elements
-	int max_size();		//	returns the maximum possible number of elements
+	int max_size();		//	returns the maximum possible number of elements [?]
 
 	// Modifiers
 	const Node* push_front(const int& value);	// adds an element to the front
 	const Node* push_back(const int& value);	// adds an element to the end
 	const Node* pop_front();	// removes the first element
-	void set_front(Node* n);
 	const Node* pop_back();	// removes the last element
-
-	void set_back(Node* node);
-
-	void reset();
-
 
 	void emplace();								// constructs element inplace
 	void emplace_front();						// constructs an element inplace at the beginning
 	void emplace_back();						// constructs an element inplace at the end
 
 	void clear();			// clears the contents
-	void erase();			// erases elements
-	void resize();			//	changes the number of elements stored
+	const Node* erase(Node* pos);			// erases Node (pos) return pos->next;
+	void resize();			//	changes the number of elements stored [?]
 	void swap(List&);	// swaps the contents
 
 	// Operations
@@ -75,6 +69,10 @@ public:
 	const Node* pop_before(Node* pos); // removes a Node before pos from list, returns the removed Node*
 	const Node* pop_after(Node* pos); // removes a Node after pos from list, returns the removed Node*
 	const Node* init(const int& value);
+	void reset();
+	
+	void set_front(Node* n);
+	void set_back(Node* node);
 
 };
 
