@@ -165,7 +165,10 @@ void test_pop() {
 	mylist.print();
 
 	const Node* h = mylist.begin();
+	const Node* h_next = h->next;
+	
 	const Node* t = mylist.end();
+	const Node* t_prev = t->prev;
 	
 	//Act test_pop_front:
 	const Node* pop_h = mylist.pop(h);
@@ -173,6 +176,7 @@ void test_pop() {
 	mylist.print();
 	//Assert
 	TEST(pop_h == h);
+	TEST(mylist.begin() == h_next);
 	TEST(mylist.size() == --size);
 	
 	// Act test_pop_end:
@@ -180,6 +184,7 @@ void test_pop() {
 	mylist.print();
 	//Assert
 	TEST(pop_t == t);
+	TEST(mylist.end() == t_prev);
 	TEST(mylist.size() == --size);
 
 	// test_pop
@@ -191,7 +196,9 @@ void test_pop() {
 	mylist.print();
 	TEST(n1 == pop_n1);
 	TEST(mylist.begin() == h0);
+	TEST(mylist.begin()->prev == nullptr);
 	TEST(mylist.begin()->next == n2);
+	TEST(n2->prev == mylist.begin());
 	TEST(mylist.size() == --size);
 
 }
