@@ -1,17 +1,9 @@
 #include "Node.h"
 #include <iostream>
+#include <assert.h>
 
 Node::~Node()
 {
-	std::cout << "Delete Node:" << val << std::endl;
-	val = 0;
-	delete next;
-}
-
-Node* Node::reset()
-{
-	val = 0;
-	prev = nullptr;
-	next = nullptr;
-	return this;
+	std::cout << "Delete Node:" << val << std::endl;	
+	assert(!prev && !next && "prev or next is not null");
 }
