@@ -11,6 +11,9 @@ class List
 private:
 	Node* m_front = nullptr;
 	Node* m_back = nullptr;
+	
+
+
 public:
 	// Constructor
 	List() = default;
@@ -22,21 +25,26 @@ public:
 	const int& front();
 	const int& back();
 
-	const Node* begin();	// Returns an iterator (pointer?) to the first element of the list.
-	const Node* end();	// Returns an iterator (pointer?) to the element following the last element of the list.
+	const Node* begin() const;	// Returns an iterator (pointer?) to the first element of the list.
+	const Node* end() const;	// Returns an iterator (pointer?) to the element following the last element of the list.
+
 
 	// Capacity
 	bool empty();		//	checks whether the container is empty
-	int  size();		//	returns the number of elements
+	int size();		    //	returns the number of elements
 	int max_size();		//	returns the maximum possible number of elements
 
 	// Modifiers
-	void push_front(const int& value);	// adds an element to the front
-	void push_back(const int& value);	// adds an element to the end
-	void pop_front();	// removes the first element
-	void pop_back();	// removes the last element
+	const Node* push_front(const int& value);	// adds an element to the front
+	const Node* push_back(const int& value);	// adds an element to the end
+	const Node* pop_front();	// removes the first element
+	void set_front(Node* n);
+	const Node* pop_back();	// removes the last element
 
-	void insert(Node* pos, const int& value);	// inserts elements	
+	void set_back(Node* node);
+
+	void reset();
+
 
 	void emplace();								// constructs element inplace
 	void emplace_front();						// constructs an element inplace at the beginning
@@ -57,7 +65,17 @@ public:
 	void unique(); // Removes all consecutive duplicate elements from the container.
 
 	// Debug
-	void print(); // orderly print out all nodes in the container
+	const void print() const; // orderly print out all nodes in the container
+
+	// Helpers
+	const Node* insert_before(Node* pos, const int& value);	// inserts elements	before pos
+	const Node* insert_after(Node* pos, const int& value);	// inserts elements	after pos
+	
+	const Node* pop(Node* node); // removes a Node from list, returns the removed Node* 
+	const Node* pop_before(Node* pos); // removes a Node before pos from list, returns the removed Node*
+	const Node* pop_after(Node* pos); // removes a Node after pos from list, returns the removed Node*
+	const Node* init(const int& value);
+
 };
 
 
