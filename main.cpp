@@ -1,7 +1,6 @@
 #include <iostream>
 #include "LinkedList.h"
 #include "DebugMarco.h"
-#include "main.h"
 
 // helpers
 void test_from_begin(const List& mylist, const int* arr, const int length) {
