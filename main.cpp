@@ -154,18 +154,45 @@ void test_pop_back() {
 }
 
 void test_pop() {
+	// Arrange
 	List mylist;
-	for (int i = 0; i < 10; i++)
+	int size = 10;
+	for (int i = 0; i < size; i++)
 	{
 		mylist.push_back(i);
 	}
 
 	mylist.print();
 
-	//test_pop_head:
 	const Node* h = mylist.begin();
-	mylist.pop(h);
+	const Node* t = mylist.end();
+	
+	//Act test_pop_front:
+	const Node* pop_h = mylist.pop(h);
+	
+	mylist.print();
+	//Assert
+	TEST(pop_h == h);
+	TEST(mylist.size() == --size);
+	
+	// Act test_pop_end:
+	const Node* pop_t = mylist.pop(t);
+	mylist.print();
+	//Assert
+	TEST(pop_t == t);
+	TEST(mylist.size() == --size);
 
+	// test_pop
+	const Node* h0 = mylist.begin();
+	const Node* n1 = mylist.begin()->next;
+	const Node* n2 = n1->next;
+
+	const Node* pop_n1 = mylist.pop(n1);
+	mylist.print();
+	TEST(n1 == pop_n1);
+	TEST(mylist.begin() == h0);
+	TEST(mylist.begin()->next == n2);
+	TEST(mylist.size() == --size);
 
 }
 
@@ -192,12 +219,12 @@ void test_empty() {
 }
 
 int main() {
-	test_push_front(); //PASS
-	test_push_back(); // PASS
-	test_size(); // PASS
-	test_empty(); // PASS
-	test_pop_front(); // PASS.. but memory leak here. poped node is not deleted
-	test_pop_back(); // PASS.. but memory leak here. poped node is not deleted
-
+	//test_push_front(); //PASS
+	//test_push_back(); // PASS
+	//test_size(); // PASS
+	//test_empty(); // PASS
+	//test_pop_front(); // PASS.. but memory leak here. poped node is not deleted
+	//test_pop_back(); // PASS.. but memory leak here. poped node is not deleted
+	test_pop();
 	return 0;
 }
