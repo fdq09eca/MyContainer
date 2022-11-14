@@ -65,7 +65,7 @@ public:
 	const Node* insert_before(Node* pos, const int& value);	// inserts elements	before pos
 	const Node* insert_after(Node* pos, const int& value);	// inserts elements	after pos
 	
-	const Node* pop(Node* node); // removes a Node from list, returns the removed Node* 
+	const Node* pop(const Node * node); // removes a Node from list, returns the removed Node* 
 	const Node* pop_before(Node* pos); // removes a Node before pos from list, returns the removed Node*
 	const Node* pop_after(Node* pos); // removes a Node after pos from list, returns the removed Node*
 	const Node* init(const int& value);

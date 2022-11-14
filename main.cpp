@@ -31,7 +31,7 @@ void test_from_end(const List& mylist, const int* arr, const int& length)
 
 void test_insert_before() { /*TODO*/ };
 void test_insert_after() { /*TODO*/ };
-void test_pop() { /*TODO*/ };
+
 
 void test_front() { /*TODO*/ };
 void test_back() { /*TODO*/ };

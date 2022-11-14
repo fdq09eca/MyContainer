@@ -53,7 +53,7 @@ const Node* List::insert_after(Node* pos, const int& value)
 /// </summary>
 /// <param name="node"></param>
 /// <returns>const Node*</returns>
-const Node* List::pop(Node* node)
+const Node* List::pop(const Node * node)
 {
 	if (!node) return nullptr;
 	if (!node->prev) {
