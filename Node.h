@@ -15,7 +15,8 @@ public:
 	Node() = default;
 	Node(const int& v) { val = v; };
 	~Node();
-	
+
+	Node* reset();
 
 private:
 
