@@ -20,6 +20,7 @@ void DoublyLinkedList::insert(Node* pos, Node* node)
 		m_back->next = node;
 		node->prev = m_back;
 		m_back = node;
+		m_size++;
 		return;
 	}
 	
@@ -31,6 +32,7 @@ void DoublyLinkedList::insert(Node* pos, Node* node)
 		m_front->prev = node;
 		node->next = m_front;
 		m_front = node;
+		m_size++;
 	}
 	else {
 		prev->next = node;
@@ -38,6 +40,7 @@ void DoublyLinkedList::insert(Node* pos, Node* node)
 
 		node->next = next;
 		next->prev = node;
+		m_size++;
 	}
 }
 
