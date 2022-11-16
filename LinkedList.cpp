@@ -7,6 +7,7 @@ void DoublyLinkedList::clear()
 	Node* h = m_front;
 	while (h) {
 		Node* n = h->next;
+		remove(h); // not optional, assertion error from node dtor otherwise
 		delete h;
 		h = n;
 	}
@@ -15,6 +16,13 @@ void DoublyLinkedList::clear()
 
 void DoublyLinkedList::insert(Node* pos, Node* node)
 {
+	if (!pos && !m_front && !m_back) {
+		m_front = node;
+		m_back = node;
+		m_size++;
+		return;
+	}
+
 	if (!pos) {
 		// special case: insert after m_back;
 		m_back->next = node;
@@ -37,11 +45,22 @@ void DoublyLinkedList::insert(Node* pos, Node* node)
 	else {
 		prev->next = node;
 		node->prev = prev;
-
 		node->next = next;
 		next->prev = node;
 		m_size++;
 	}
+}
+
+void DoublyLinkedList::remove(Node* node)
+{
+	
+	Node* prev = node->prev;
+	Node* next = node->next;
+	if (prev) prev->next = next;
+	if (next) next->prev = prev;
+	
+	node->next = nullptr;
+	node->prev = nullptr;
 }
 
 DoublyLinkedList::~DoublyLinkedList()
