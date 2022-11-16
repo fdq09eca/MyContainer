@@ -30,11 +30,11 @@ public:
 	void remove(Node* node);        // removes any node
 	Node* push_front(Node* node); // inserts before front node;
 	Node* push_back(Node* node); // inserts before front node;
-	Node* pop_front();	// removes the first element
-	Node* pop_back();	// removes the last element
+	Node* pop_front();	// removes and returns the first element
+	Node* pop_back();	// removes and returns the last element
 	
 	// Operations
-	Node* find(int& value);                      // find 1st node with same value 
+	Node* find(const int & value);                      // find 1st node with same value 
 	void swap(DoublyLinkedList& another_list);	 // swaps the contents
 	void sort();	       				         // sorts the elements
 	void merge(DoublyLinkedList& another_list);  // merges two sorted lists

@@ -73,19 +73,75 @@ void test_insert() {
 	
 }
 
+void test_find() {
+	//Arrange
+	DoublyLinkedList dll;
+	int length = 10;
+
+	for (int i = 0; i < length; i++)
+	{
+		dll.push_back(new Node(i));
+	}
+	
+	
+	
+	// Action and Assert
+	for (int i = 0; i < length; i++)
+	{
+		TEST(dll.find(i));
+	}
+	
+	TEST(dll.find(10) == nullptr);
+	TEST(dll.find(-10) == nullptr);
+
+
+}
+
+void test_reverse() {
+	//Arrange
+	DoublyLinkedList dll;
+	int length = 10;
+	
+	for (int i = 0; i < length; i++)
+	{
+		dll.push_back(new Node(i));
+	}
+	dll.print();
+
+	Node* f0 = dll.front_ptr();
+	Node* b0 = dll.back_ptr();
+	
+	//Action
+	dll.reverse();
+	dll.print();
+	
+	//Assert
+	Node* f1 = dll.front_ptr();
+	Node* b1 = dll.back_ptr();
+
+	TEST(f1 == b0);
+	TEST(b1 == f0);
+
+
+	Node* p = f1;
+	int v = length - 1;
+
+	for (; p; v--)
+	{
+		dump_var(p->val);
+		if (p->prev) TEST(p->prev->val == v + 1);
+		TEST(p->val == v);
+		if (p->next) TEST(p->next->val == v - 1);
+		p = p->next;
+	}
+}
+
 
 
 
 int main() {
-	test_insert();
-
-	// test_push_front(); //PASS
-	// test_push_back(); // PASS
-	// test_size(); // PASS
-	// test_empty(); // PASS
-	// test_pop_front(); // PASS.. but memory leak here. poped node is not deleted
-	// test_pop_back(); // PASS.. but memory leak here. poped node is not deleted
-	// test_pop(); //PASS
-	// test_erase(); //PASS ?
+	//test_insert(); // PASS
+	//test_find(); //PASS
+	test_reverse(); // PASS
 	return 0;
 }

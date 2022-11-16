@@ -108,13 +108,27 @@ Node* DoublyLinkedList::back_ptr()
 	return m_back;
 }
 
-Node* DoublyLinkedList::find(int& value)
+Node* DoublyLinkedList::find(const int & value)
 {
-	
-	for (Node* p = m_front; p; p->next) {
-		if (p->val == value) return p;
+	Node* p = m_front;
+	for (; p;) {
+		if (p->val == value) 
+			return p;
+		p = p->next;
 	}
 	return nullptr;
+}
+
+void DoublyLinkedList::reverse()
+{
+	Node* p = m_front;
+	Node* next = nullptr;
+	while (p) {
+		next = p->next;
+		std::swap(p->prev, p->next);
+		p = next;
+	}
+	std::swap(m_front, m_back);
 }
 
 void DoublyLinkedList::print()
