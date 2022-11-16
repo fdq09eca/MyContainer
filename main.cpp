@@ -16,7 +16,7 @@ void test_insert() {
 
 	//Assert
 	Node* h = dll.front_ptr();
-	for (int v = 0; v < length; v++)
+	for (int v = 0; h; v++)
 	{
 		dump_var(v);
 		dump_var(h->val);
@@ -57,7 +57,7 @@ void test_insert() {
 	dll.print();
 
 	
-	// f2 f1 3 f0
+	// f2 f1 -3 f0
 	//       ^
 	
 	dll.insert(f0, new Node(-3));
@@ -65,8 +65,8 @@ void test_insert() {
 	Node* f0p = f0->prev;
 	dump_var(f0p->val);
 	TEST(f0p->val == -3);
-	//TEST(f0p->prev == f1);
-	//TEST(f0p->next == f0);
+	TEST(f0p->prev == f1);
+	TEST(f0p->next == f0);
 	
 
 

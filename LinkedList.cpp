@@ -7,11 +7,11 @@ void DoublyLinkedList::clear()
 	Node* h = m_front;
 	while (h) {
 		Node* n = h->next;
-		remove(h); // not optional, assertion error from node dtor otherwise
+		remove(h); // not optional, assertion error from ~Node() otherwise
 		delete h;
 		h = n;
 	}
-	m_size = 0;
+	assert(m_size == 0 && "size != 0 after clear()");
 }
 
 void DoublyLinkedList::insert(Node* pos, Node* node)
@@ -95,7 +95,7 @@ Node* DoublyLinkedList::pop_back()
 
 DoublyLinkedList::~DoublyLinkedList()
 {
-	clear();
+	clear();	
 }
 
 Node* DoublyLinkedList::front_ptr()
