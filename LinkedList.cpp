@@ -17,6 +17,7 @@ void DoublyLinkedList::clear()
 void DoublyLinkedList::insert(Node* pos, Node* node)
 {
 	if (!pos && !m_front && !m_back) {
+		// insert 1st node
 		m_front = node;
 		m_back = node;
 		m_size++;
@@ -25,6 +26,8 @@ void DoublyLinkedList::insert(Node* pos, Node* node)
 
 	if (!pos) {
 		// special case: insert after m_back;
+		// m_back-> <-[node]
+		assert(m_back, "tried to push_back() but m_back == null");
 		m_back->next = node;
 		node->prev = m_back;
 		m_back = node;
@@ -33,20 +36,22 @@ void DoublyLinkedList::insert(Node* pos, Node* node)
 	}
 	
 	Node* prev = pos->prev;
-	Node* next = pos->next;
 	
 	if (!prev) {
+		// push front
 		assert(pos == m_front && "pos == null but pos != m_front.");
-		m_front->prev = node;
+		pos->prev = node;
 		node->next = m_front;
 		m_front = node;
 		m_size++;
 	}
 	else {
+		// insert before pos.
+		// prev -> <-{node}-> <- pos
+		pos->prev = node;
 		prev->next = node;
 		node->prev = prev;
-		node->next = next;
-		next->prev = node;
+		node->next = pos;
 		m_size++;
 	}
 }
@@ -61,6 +66,31 @@ void DoublyLinkedList::remove(Node* node)
 	
 	node->next = nullptr;
 	node->prev = nullptr;
+	m_size--;
+}
+
+Node* DoublyLinkedList::push_front(Node* node)
+{
+	insert(m_front, node);
+	return m_front;
+}
+
+Node* DoublyLinkedList::push_back(Node* node)
+{
+	insert(nullptr, node);
+	return m_back;
+}
+
+Node* DoublyLinkedList::pop_front()
+{
+	remove(m_front);
+	return m_front;
+}
+
+Node* DoublyLinkedList::pop_back()
+{
+	remove(m_back);
+	return m_back;
 }
 
 DoublyLinkedList::~DoublyLinkedList()
@@ -76,6 +106,15 @@ Node* DoublyLinkedList::front_ptr()
 Node* DoublyLinkedList::back_ptr()
 {
 	return m_back;
+}
+
+Node* DoublyLinkedList::find(int& value)
+{
+	
+	for (Node* p = m_front; p; p->next) {
+		if (p->val == value) return p;
+	}
+	return nullptr;
 }
 
 void DoublyLinkedList::print()

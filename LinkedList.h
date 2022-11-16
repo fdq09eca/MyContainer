@@ -34,11 +34,11 @@ public:
 	Node* pop_back();	// removes the last element
 	
 	// Operations
-	void swap(DoublyLinkedList& another_list);	 // swaps the contents
-	void merge(DoublyLinkedList& another_list);  // merges two sorted lists
-	void sort();	       				         // sorts the elements
-	void reverse();                              // reverses the order of the elements
 	Node* find(int& value);                      // find 1st node with same value 
+	void swap(DoublyLinkedList& another_list);	 // swaps the contents
+	void sort();	       				         // sorts the elements
+	void merge(DoublyLinkedList& another_list);  // merges two sorted lists
+	void reverse();                              // reverses the order of the elements
 	
 	// Debug
 	void print(); // orderly print out all nodes in the container
