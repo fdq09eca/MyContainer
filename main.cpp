@@ -71,14 +71,14 @@ void test_insert() {
 }
 
 void test_remove() {  
-	//Arrange
+	//Arrange - remove front
 	DoublyLinkedList dll;
 	dll.push_back(1);
 
 	Node* f = dll.front_ptr();
 	Node* b = dll.back_ptr();
 	
-	//Action
+	//Action 
 	dll.remove(f);
 	
 	//Assert
@@ -94,7 +94,7 @@ void test_remove() {
 
 	delete f;
 
-	//Arrange
+	//Arrange - remove back
 	dll.push_back(1);
 	dll.push_back(2);
 
@@ -112,7 +112,7 @@ void test_remove() {
 
 	delete n;
 
-	//Arrange
+	//Arrange - remove middle
 	dll.push_back(2);
 	dll.push_back(3);
 	n = dll.front_ptr()->next;
@@ -454,6 +454,6 @@ int main() {
 	test_deep_copy(); //PASS
 	test_swap(); //PASS
 	test_merge(); //PASS
-	test_remove();
+	test_remove(); //PASS
 	return 0;
 }
