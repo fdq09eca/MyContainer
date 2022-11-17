@@ -221,6 +221,21 @@ void DoublyLinkedList::swap(DoublyLinkedList& another_list)
 	std::swap(m_size, another_list.m_size);
 }
 
+void DoublyLinkedList::merge(DoublyLinkedList& another_list) 
+{
+	
+	m_back->next = another_list.m_front;
+	another_list.m_front->prev = m_back;
+	m_size += another_list.m_size;
+
+	another_list.m_front = nullptr;
+	another_list.m_back = nullptr;
+	another_list.m_size = 0;
+
+	sort(true);
+	return;
+}
+
 void DoublyLinkedList::reverse()
 {
 	Node* p = m_front;

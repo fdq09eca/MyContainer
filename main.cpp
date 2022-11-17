@@ -26,17 +26,17 @@ void test_insert() {
 		h = h->next;
 	}
 	TEST(h == nullptr);
-	
+
 	// push_front
-	
+
 	//Assert
 	Node* f0 = dll.front_ptr();
 	TEST(f0->prev == nullptr);
 	TEST(f0->val == 0);
 	TEST(f0->next->val == 1);
-	
+
 	dll.print();
-	
+
 	//Action
 	dll.insert(dll.front_ptr(), new Node(-1));
 	//Assert
@@ -44,7 +44,7 @@ void test_insert() {
 	TEST(f1->prev == nullptr);
 	TEST(f1->val == -1);
 	TEST(f1->next == f0);
-	
+
 	dll.print();
 
 	//Action
@@ -59,7 +59,7 @@ void test_insert() {
 	// Arrange & Action
 	// f2 f1 -3 f0
 	//       ^
-	
+
 	dll.insert(f0, new Node(-3));
 	dll.print();
 	Node* f0p = f0->prev;
@@ -70,7 +70,7 @@ void test_insert() {
 	TEST(f0p->next == f0);
 }
 
-void test_remove() {  /*TODO*/  }
+void test_remove() {  /*TODO*/ }
 
 void test_find() {
 	//Arrange
@@ -81,15 +81,15 @@ void test_find() {
 	{
 		dll.push_back(new Node(i));
 	}
-	
-	
-	
+
+
+
 	// Action and Assert
 	for (int i = 0; i < length; i++)
 	{
 		TEST(dll.find(i));
 	}
-	
+
 	TEST(dll.find(10) == nullptr);
 	TEST(dll.find(-10) == nullptr);
 
@@ -100,7 +100,7 @@ void test_reverse() {
 	//Arrange
 	DoublyLinkedList dll;
 	int length = 10;
-	
+
 	for (int i = 0; i < length; i++)
 	{
 		dll.push_back(new Node(i));
@@ -109,11 +109,11 @@ void test_reverse() {
 
 	Node* f0 = dll.front_ptr();
 	Node* b0 = dll.back_ptr();
-	
+
 	//Action
 	dll.reverse();
 	dll.print();
-	
+
 	//Assert
 	Node* f1 = dll.front_ptr();
 	Node* b1 = dll.back_ptr();
@@ -145,10 +145,10 @@ void test_find_min() {
 		dll.push_back(new Node(i));
 	}
 
-	
+
 	//Action
 	Node* min_node = dll.find_min();
-	
+
 	//Assert
 	TEST(min_node->val == 0);
 
@@ -165,17 +165,17 @@ void test_sort() {
 	DoublyLinkedList dll;
 	int length = 10;
 
-	for (int i = length - 1; i >= 0 ; i--)
+	for (int i = length - 1; i >= 0; i--)
 	{
 		if (i % 2)
 			dll.push_back(new Node(i));
 		else
 			dll.push_front(new Node(i));
-		
+
 	}
 	std::cout << ">> Original DoublyLinkedList: " << std::endl;
 	dll.print();
-	
+
 	//Action
 	dll.sort();
 
@@ -218,14 +218,14 @@ void test_deep_copy() {
 		another_dll.push_back(v);
 	}
 
-	
+
 
 	//Action
 	ori_dll.deep_copy(another_dll);
-	
+
 	Node* p = another_dll.front_ptr();
 	Node* q = ori_dll.front_ptr();
-	
+
 
 	//Assert
 	while (p)
@@ -235,7 +235,7 @@ void test_deep_copy() {
 		p = p->next;
 		q = q->next;
 	}
-	
+
 }
 
 void test_swap() {
@@ -246,12 +246,12 @@ void test_swap() {
 	{
 		dll_0.push_back(v);
 	}
-	
+
 	for (int v = 0; v < 10; v++)
 	{
 		dll_1.push_back(v);
 	}
-	
+
 	Node* f0 = dll_0.front_ptr();
 	Node* f1 = dll_1.front_ptr();
 	Node* b0 = dll_0.back_ptr();
@@ -259,10 +259,10 @@ void test_swap() {
 
 	TEST(dll_0.size() == 5);
 	TEST(dll_1.size() == 10);
-	
+
 	//Action
 	dll_0.swap(dll_1);
-	
+
 
 	//Assert
 	TEST(dll_0.front_ptr() == f1);
@@ -270,10 +270,10 @@ void test_swap() {
 
 	TEST(dll_0.back_ptr() == b1);
 	TEST(dll_1.back_ptr() == b0);
-	
+
 	TEST(dll_0.size() == 10);
 	TEST(dll_1.size() == 5);
-	
+
 	{ // check prev/next pointers for dll_0
 		int v = 0, length = dll_0.size();
 		Node* p = dll_0.front_ptr();
@@ -285,7 +285,7 @@ void test_swap() {
 			p = p->next;
 			v++;
 		}
-	}  
+	}
 
 	{ // check prev/next pointers for dll_1
 		int v = 0, length = dll_1.size();
@@ -299,7 +299,7 @@ void test_swap() {
 			v++;
 		}
 	}
-	
+
 	//Action
 	dll_0.swap(dll_1);
 
@@ -340,13 +340,67 @@ void test_swap() {
 	}
 }
 
+void test_merge() {
+	//Arrange
+	DoublyLinkedList dll_0;
+	DoublyLinkedList dll_1;
+
+	for (int v = 0; v < 10; v++)
+	{
+		if (v % 2)
+			dll_1.push_back(v); 
+		else
+			dll_0.push_back(v); 
+	}
+
+	dll_0.print(); // (0)->2->4->6->[8]
+	dll_1.print(); // (1)->3->5->7->[9]
+
+	Node* f0 = dll_0.front_ptr();
+	Node* f1 = dll_1.front_ptr();
+	
+	Node* b0 = dll_0.back_ptr();
+	Node* b1 = dll_1.back_ptr();
+	
+
+	//Action
+	dll_0.merge(dll_1); 
+
+	dll_0.print(); // (0)->1->2->3->4->5->6->7->8->[9]
+	
+	//Assert
+	TEST(dll_0.front_ptr() == f0);
+	TEST(f0->next == f1);
+	TEST(dll_0.back_ptr() == b1);
+	TEST(b1->prev== b0);
+
+
+	{
+		Node* p = dll_0.front_ptr();
+		for (int v = 0; p; v++)
+		{
+			if (p->prev) TEST(p->prev->val == v-1);
+			TEST(p->val == v);
+			if (p->next) TEST(p->next->val == v+1);
+			p = p->next;
+		}
+	}
+
+	TEST(dll_1.front_ptr() == nullptr);
+	TEST(dll_1.back_ptr() == nullptr);
+	TEST(dll_1.size() == 0);
+
+
+}
+
 int main() {
-	//test_insert(); // PASS
-	//test_find(); //PASS
-	//test_reverse(); // PASS
-	//test_find_min(); // PASS
-	//test_sort(); //PASS
-	//test_deep_copy(); //PASS
-	test_swap();
+	test_insert(); // PASS
+	test_find(); //PASS
+	test_reverse(); // PASS
+	test_find_min(); // PASS
+	test_sort(); //PASS
+	test_deep_copy(); //PASS
+	test_swap(); //PASS
+	test_merge(); //PASS
 	return 0;
 }

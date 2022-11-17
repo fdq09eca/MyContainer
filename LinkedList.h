@@ -48,7 +48,7 @@ public:
 	void deep_copy(DoublyLinkedList& another_list); 
 	
 	void swap(DoublyLinkedList& another_list);	 // swaps the contents
-	void merge(DoublyLinkedList& another_list);  // merges two sorted lists
+	void merge(DoublyLinkedList& another_list);  // merges two sorted lists in to one
 	void reverse();                              // reverses the order of the elements
 	
 	// Debug
