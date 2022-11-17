@@ -56,7 +56,7 @@ void test_insert() {
 	TEST(f2->next == f1);
 	dll.print();
 
-	
+	// Arrange & Action
 	// f2 f1 -3 f0
 	//       ^
 	
@@ -64,14 +64,13 @@ void test_insert() {
 	dll.print();
 	Node* f0p = f0->prev;
 	dump_var(f0p->val);
+	// Assert
 	TEST(f0p->val == -3);
 	TEST(f0p->prev == f1);
 	TEST(f0p->next == f0);
-	
-
-
-	
 }
+
+void test_remove() {  /*TODO*/  }
 
 void test_find() {
 	//Arrange
@@ -136,12 +135,85 @@ void test_reverse() {
 	}
 }
 
+void test_find_min() {
+	//Arrange
+	DoublyLinkedList dll;
+	int length = 10;
 
+	for (int i = 0; i < length; i++)
+	{
+		dll.push_back(new Node(i));
+	}
 
+	
+	//Action
+	Node* min_node = dll.find_min();
+	
+	//Assert
+	TEST(min_node->val == 0);
+
+	//Arrange
+	dll.push_back(new Node(-10));
+	min_node = dll.find_min();
+
+	//Assert
+	TEST(min_node->val == -10);
+}
+
+void test_sort() {
+	//Arrange
+	DoublyLinkedList dll;
+	int length = 10;
+
+	for (int i = length - 1; i >= 0 ; i--)
+	{
+		if (i % 2)
+			dll.push_back(new Node(i));
+		else
+			dll.push_front(new Node(i));
+		
+	}
+	std::cout << ">> Original DoublyLinkedList: " << std::endl;
+	dll.print();
+	
+	//Action
+	dll.sort();
+
+	std::cout << ">> DoublyLinkedList ascending sorted: " << std::endl;
+	dll.print();
+
+	//Assert
+	Node* p = dll.front_ptr();
+	for (int v = 0; p; v++)
+	{
+		if (p->prev) TEST(p->prev->val == v - 1);
+		TEST(p->val == v);
+		if (p->next) TEST(p->next->val == v + 1);
+		p = p->next;
+	}
+
+	//Action
+	dll.sort(false);
+
+	std::cout << ">> DoublyLinkedList descending sorted: " << std::endl;
+	dll.print();
+
+	////Assert
+	//Node* p = dll.front_ptr();
+	//for (int v = 0; p; v++)
+	//{
+	//	if (p->prev) TEST(p->prev->val == v - 1);
+	//	TEST(p->val == v);
+	//	if (p->next) TEST(p->next->val == v + 1);
+	//	p = p->next;
+	//}
+}
 
 int main() {
-	//test_insert(); // PASS
-	//test_find(); //PASS
+	test_insert(); // PASS
+	test_find(); //PASS
 	test_reverse(); // PASS
+	test_find_min(); // PASS
+	test_sort(); //PASS
 	return 0;
 }
