@@ -203,6 +203,24 @@ DoublyLinkedList& DoublyLinkedList::sort(const bool& asc)
 	return *this;
 }
 
+void DoublyLinkedList::deep_copy(DoublyLinkedList& another_list)
+{
+	assert(m_size == 0 && "list is not empty, no deep_copy.");
+	Node* p = another_list.front_ptr();
+	while (p) {
+		push_back(p->val);
+		p = p->next;
+	}
+}
+
+void DoublyLinkedList::swap(DoublyLinkedList& another_list)
+{
+	//std::swap(*this, another_list);
+	std::swap(m_front, another_list.m_front);
+	std::swap(m_back, another_list.m_back);
+	std::swap(m_size, another_list.m_size);
+}
+
 void DoublyLinkedList::reverse()
 {
 	Node* p = m_front;

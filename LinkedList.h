@@ -42,10 +42,10 @@ public:
 	
 	// Operations
 	Node* find(const int & value);      // find 1st node with same value 
-	Node* find_min();                   // returns min value 
-	Node* find_max();                   // returns max value 
+	Node* find_min();                   // returns Node with min value 
+	Node* find_max();                   // returns Node with max value 
 	DoublyLinkedList& sort(const bool& asc = true);	 // sorts the elements
-	void deep_copy(const DoublyLinkedList& another_list); 
+	void deep_copy(DoublyLinkedList& another_list); 
 	
 	void swap(DoublyLinkedList& another_list);	 // swaps the contents
 	void merge(DoublyLinkedList& another_list);  // merges two sorted lists
