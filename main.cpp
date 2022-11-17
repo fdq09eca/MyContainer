@@ -71,36 +71,39 @@ void test_insert() {
 }
 
 void test_remove() {  
+	//Arrange
 	DoublyLinkedList dll;
 	dll.push_back(1);
 
 	Node* f = dll.front_ptr();
 	Node* b = dll.back_ptr();
+	
+	//Action
 	dll.remove(f);
 	
+	//Assert
 	TEST(f != nullptr);
 	TEST(f->prev == nullptr);
 	TEST(f->next == nullptr);
 	TEST(f->val == 1);
 	TEST(b != nullptr);
 	TEST(b->val == 1);
-	
 	TEST(dll.front_ptr() == nullptr);
 	TEST(dll.back_ptr() == nullptr);
 	TEST(dll.size() == 0);
 
 	delete f;
 
+	//Arrange
 	dll.push_back(1);
 	dll.push_back(2);
 
 	Node* n = dll.front_ptr()->next;
 	Node* b2 = dll.back_ptr();
-
+	//Action && Assert
 	TEST(n->val == 2);
 	TEST(b2->val == 2);
 	TEST(n == b2);
-
 	dll.remove(n);
 	TEST(n->prev == nullptr);
 	TEST(n->next == nullptr);
@@ -108,10 +111,13 @@ void test_remove() {
 	TEST(dll.size() == 1);
 
 	delete n;
+
+	//Arrange
 	dll.push_back(2);
 	dll.push_back(3);
-
 	n = dll.front_ptr()->next;
+
+	//Action && Assert
 	dll.remove(n);
 	TEST(dll.front_ptr()->next == dll.back_ptr());
 	TEST(dll.back_ptr()->prev == dll.front_ptr());
@@ -440,14 +446,14 @@ void test_merge() {
 }
 
 int main() {
-	//test_insert(); // PASS
-	//test_find(); //PASS
-	//test_reverse(); // PASS
-	//test_find_min(); // PASS
-	//test_sort(); //PASS
-	//test_deep_copy(); //PASS
-	//test_swap(); //PASS
-	//test_merge(); //PASS
+	test_insert(); // PASS
+	test_find(); //PASS
+	test_reverse(); // PASS
+	test_find_min(); // PASS
+	test_sort(); //PASS
+	test_deep_copy(); //PASS
+	test_swap(); //PASS
+	test_merge(); //PASS
 	test_remove();
 	return 0;
 }
